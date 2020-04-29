@@ -6,3 +6,5 @@ It is possible to create your own localizations by creating a new JSON file in V
 
 ## Adding custom Types
 Tutorial TBD, but you can check VRCPrefabs/EasyQuestSwitch/EQS_Types/ and try to figure it out.
+
+![](https://i.imgur.com/aYvf4yl.png)
