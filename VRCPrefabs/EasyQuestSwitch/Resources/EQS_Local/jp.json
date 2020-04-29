@@ -1,0 +1,27 @@
+{
+    "DisplayName": "日本語",
+	
+    "SettingsButton" : "設定",
+	"SettingsLanguage" : "言語",
+    "SettingsApplyPC" : "PCの設定を強制的に適用",
+    "SettingsApplyQuest" : "Questの設定を強制的に適用",
+    "SettingsRemoveEQS" : "「EasyQuestSwitch」をSceneから削除",
+	"SettingsCacheWarning" : "キャッシュサーバーが有効になっていない場合、切り替え時間が長くなる可能性があります。\nLocalかRemoteに設定するのがおすすめです。\n(Remoteの場合は追加の手順が必要です)",
+	"SettingsCacheButton" : "設定を開く",
+	"SettingsExplanation" : "ようこそ、「EasyQuestSwitch」へ、まずリストに機能を使いたいGameObjectを「+」で追加し\nシーンの中から任意のコンポーネントを設定欄にドラッグ&ドロップします。\nすると、そのコンポーネントに関連するオプションが表示されますので、\nSceneのPCバージョンとQuestバージョンを適宜設定します。\nこれらのオプションは、UnityプロジェクトのPlatformを変更すると、\nシーンに自動的に適用されます。",
+	"SettingsFeedback" : "プログラムに何か問題があれば、GitHubのコードを調べるか、Twitterで私に連絡してください!",
+    "SettingsGithub" : "Github",
+	"SettingsTwitter" : "Twitter",
+	
+	"PopupDeleteWarning" : "シーンから「EasyQuestSwitch」が削除され、データもすべて削除されます。続行しますか？",
+	"PopupAccept" : "はい",
+	"PopupDecline" : "いいえ",
+	
+	"ListSetupEQS" : "Sceneに「EasyQuestSwitch」を追加する",
+	"ListExpand" : "すべてを展開",
+    "ListFold" : "すべてを畳む",
+	
+	"LogUnsupportedComponent" : "これはサポートされていないコンポーネントです",
+	"LogSwitchSuccess" : "ビルドターゲット {0} のシーン変更を「EasyQuestSwitch」が適用しました。",
+	"LogSwitchFailure" : "こちらはサポートされていないビルドターゲットです。"
+}

@@ -1,0 +1,27 @@
+{
+    "DisplayName": "English",
+	
+    "SettingsButton" : "Settings",
+	"SettingsLanguage" : "Language",
+    "SettingsApplyPC" : "Force apply PC settings",
+    "SettingsApplyQuest" : "Force apply Quest settings",
+    "SettingsRemoveEQS" : "Remove Easy Quest Switch from the scene",
+	"SettingsCacheWarning" : "Your cache server is not enabled, you may experience long switching times! It is best to set it to local or remote. (Remote requires additional steps)",
+	"SettingsCacheButton" : "Open settings",
+	"SettingsExplanation" : "Welcome to Easy Quest Switch! To begin with, add a new element to the list with '+' and drag a component from the scene into the object field, several options related to that component will appear, you can configure each for the PC or Quest version of the scene respectively.\nThese options will be automatically applied to the scene when you change the Unity project build target",
+	"SettingsFeedback" : "If you have any issues with the program, do not hesitate to look up the github code or contact me on twitter!",
+    "SettingsGithub" : "Github",
+	"SettingsTwitter" : "Twitter",
+	
+    "PopupDeleteWarning" : "This will delete EasyQuestSwitch from the scene and all its data, are you sure?",
+	"PopupAccept" : "Yes",
+	"PopupDecline" : "No",
+	
+	"ListSetupEQS" : "Setup Easy Quest Switch in the scene",
+	"ListExpand" : "Expand all",
+    "ListFold" : "Fold all",
+	
+	"LogUnsupportedComponent" : "This is an unsupported component",
+	"LogSwitchSuccess" : "EasyQuestSwitch applied the scene changes of build target {0}",
+	"LogSwitchFailure" : "Switched to an unsupported build target"
+}
