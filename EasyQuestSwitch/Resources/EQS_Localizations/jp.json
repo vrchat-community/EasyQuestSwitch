@@ -1,0 +1,36 @@
+{
+	"DisplayName": "日本語",
+
+	"SettingsButton": "設定",
+	"SettingsLanguage": "言語",
+	"SettingsListFormat": "UIの形式",
+	"SettingsListFormatArray": [ "簡易 (高速)", "順番変更可能 (低速)" ],
+	"SettingsApplyPC": "PCの設定を強制的に適用",
+	"SettingsApplyQuest": "Questの設定を強制的に適用",
+	"SettingsRemoveEQS": "「EasyQuestSwitch」をSceneから削除",
+	"SettingsCacheWarning": "キャッシュサーバーが有効になっていない場合、切り替え時間が長くなる可能性があります。\nLocalかRemoteに設定するのがおすすめです。\n(Remoteの場合は追加の手順が必要です)",
+	"SettingsCacheButton": "設定を開く",
+	"SettingsAssetPipelineV2": "Asset Pipeline v2を使用していないので、これに切り替えるとプラットフォームの切り替え時間が短縮されるかもしれません。",
+	"SettingsExplanation": "ようこそ、「EasyQuestSwitch」へ、まずリストに機能を使いたいGameObjectを「+」で追加し\nシーンの中から任意のコンポーネントを設定欄にドラッグ&ドロップします。\nすると、そのコンポーネントに関連するオプションが表示されますので、\nSceneのPCバージョンとQuestバージョンを適宜設定します。\nこれらのオプションは、UnityプロジェクトのPlatformを変更すると、\nシーンに自動的に適用されます。",
+	"SettingsDebugOptions": "Debugオプション",
+	"SettingsDebugReveal": "EQS_Data管理用 GameObjectを表示",
+	"SettingsFeedback": "プログラムに何か問題があれば、GitHubのコードを調べるか、Twitterで私に連絡してください!",
+	"SettingsGithub": "Github",
+	"SettingsTwitter": "Twitter",
+
+	"PopupDeleteWarning": "シーンから「EasyQuestSwitch」が削除され、データもすべて削除されます。続行しますか？",
+	"PopupTargetChanged": "前回のBuild実行時と違うPlatformへ変更されました。EQSを{0}用で適用してください。\nマニュアルで適用する場合は設定メニューから実行可能です。",
+	"PopupAccept": "はい",
+	"PopupDecline": "いいえ",
+
+	"ListSetupEQS": "Sceneに「EasyQuestSwitch」を追加する",
+	"ListExpand": "すべてを展開",
+	"ListFold": "すべてを畳む",
+
+	"LogUnsupportedComponent": "これはサポートされていないコンポーネントです",
+	"LogComponentExists": "このコンポーネントは既にEQSに設定されています。",
+	"LogSwitchMissing": "設定番号{0}の対象コンポーネントは設定漏れがあるか関連付けがされていません。",
+	"LogSwitchTryCatch": "設定番号{0}、({1})は変換中にエラーしました。{2}",
+	"LogSwitchSuccess": "ビルドターゲット {0} のシーン変更を「EasyQuestSwitch」が適用しました。",
+	"LogSwitchFailure": "こちらはサポートされていないビルドターゲットです。"
+}

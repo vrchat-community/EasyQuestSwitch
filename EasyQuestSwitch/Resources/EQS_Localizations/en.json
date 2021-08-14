@@ -1,0 +1,36 @@
+{
+	"DisplayName": "English",
+
+	"SettingsButton": "Settings",
+	"SettingsLanguage": "Language",
+	"SettingsListFormat": "List format",
+	"SettingsListFormatArray": [ "Simple (faster)", "Reorderable (slower)" ],
+	"SettingsApplyPC": "Force apply PC settings",
+	"SettingsApplyQuest": "Force apply Quest settings",
+	"SettingsRemoveEQS": "Remove Easy Quest Switch from the scene",
+	"SettingsCacheWarning": "Your cache server is not enabled, you may experience long switching times! It is best to set it to local or remote. (Remote requires additional steps)",
+	"SettingsCacheButton": "Open settings",
+	"SettingsAssetPipelineV2": "You are not using Asset Pipeline v2, switching to it may give you faster platform switching times.",
+	"SettingsExplanation": "Welcome to Easy Quest Switch! To begin with, add a new element to the list with '+' and drag a component from the scene into the object field, several options related to that component will appear, you can configure each for the PC or Quest version of the scene respectively.\nThese options will be automatically applied to the scene when you change the Unity project build target.",
+	"SettingsDebugOptions": "Debug options",
+	"SettingsDebugReveal": "Reveal EQS_Data GameObject",
+	"SettingsFeedback": "If you have any issues with the program, do not hesitate to look up the github code or contact me on twitter!",
+	"SettingsGithub": "Github",
+	"SettingsTwitter": "Twitter",
+
+	"PopupDeleteWarning": "This will delete EasyQuestSwitch from the scene and all its data, are you sure?",
+	"PopupTargetChanged": "Your build target has changed since the last time you've opened this scene, apply EQS changes for {0}?\nThis can be done manually in the settings menu.",
+	"PopupAccept": "Yes",
+	"PopupDecline": "No",
+
+	"ListSetupEQS": "Setup Easy Quest Switch in the scene",
+	"ListExpand": "Expand all",
+	"ListFold": "Fold all",
+
+	"LogUnsupportedComponent": "This is an unsupported component.",
+	"LogComponentExists": "This component is already present within EQS.",
+	"LogSwitchMissing": "Entry {0} target component is missing or not assigned.",
+	"LogSwitchFailure": "Entry {0} ({1}) encountered an error during the switching process: {2}.",
+	"LogSwitchSuccess": "EasyQuestSwitch applied the scene changes of build target {0}.",
+	"LogSwitchUnsupported": "Switched to an unsupported build target."
+}
