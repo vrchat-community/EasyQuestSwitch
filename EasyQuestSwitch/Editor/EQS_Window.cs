@@ -44,6 +44,8 @@ namespace EasyQuestSwitch
         private int chosenLanguage;
         private int chosenListFormat;
         private bool revealEQSdata = false;
+        private float sideOffset = 0f;
+        private bool showHierarchyIcon = true;
 
         private void CreatePlatformDependantHeader(BuildTarget buildTarget)
         {
@@ -77,6 +79,8 @@ namespace EasyQuestSwitch
             chosenLanguage = EditorPrefs.GetInt("EQS_Language", 0);
             EQS_Localization.SetLanguage(chosenLanguage);
             chosenListFormat = EditorPrefs.GetInt("EQS_ListFormat", 0); // 0 - Simple, 1 - Reorderable
+            sideOffset = EditorPrefs.GetFloat("EQS_HierarchySideOffset", 0f);
+            showHierarchyIcon = EditorPrefs.GetBool("EQS_ShowHierarchyIcon", true);
 
             if (data != null)
             {
@@ -300,6 +304,7 @@ namespace EasyQuestSwitch
             UnityEngine.Object elementObj = element.FindPropertyRelative("Type").objectReferenceValue;
             if (elementObj != null) DestroyImmediate(elementObj);
             list.DeleteArrayElementAtIndex(index);
+            EditorApplication.DirtyHierarchyWindowSorting();
         }
 
         private void OnGUI()
@@ -397,6 +402,17 @@ namespace EasyQuestSwitch
                             DestroyEQS();
                         }
                     }
+                    EditorGUI.BeginChangeCheck();
+                    EditorGUILayout.LabelField("Hierarchy Settings", EditorStyles.boldLabel);
+                    showHierarchyIcon = EditorGUILayout.Toggle("Show Hierarchy Icon", showHierarchyIcon);
+                    sideOffset = EditorGUILayout.Slider("Icon Offset", sideOffset, -20f, 100f);
+                    if (EditorGUI.EndChangeCheck()) {
+                        EditorPrefs.SetFloat("EQS_HierarchySideOffset", sideOffset);
+                        EditorPrefs.SetBool("EQS_ShowHierarchyIcon", showHierarchyIcon);
+                        EQS_HierarchyController.InitializeEQSHierarchy();
+                        EditorApplication.DirtyHierarchyWindowSorting();
+                    }
+                    EditorGUILayout.Space(10);
                 }
 
                 using (new GUILayout.VerticalScope())
@@ -524,6 +540,7 @@ namespace EasyQuestSwitch
                                     {
                                         serializedObject.ApplyModifiedProperties();
                                         data.ValidateData(index);
+                                        EditorApplication.DirtyHierarchyWindowSorting();
                                     }
                                     if (GUILayout.Button("\u2005\u2006-", EditorStyles.toolbarButton, GUILayout.Width(24)))
                                     {
@@ -574,6 +591,37 @@ namespace EasyQuestSwitch
                         else if (chosenListFormat == 1) // Reorderable
                         {
                             reorderableList.DoLayoutList();
+                        }
+                        EditorGUILayout.LabelField(new GUIContent("Drag & Drop new items here"), new GUIStyle(EditorStyles.helpBox) {
+                            alignment = TextAnchor.MiddleCenter,
+                            fixedHeight = 100,
+                            fontSize = 24
+                        });
+                        var rect = GUILayoutUtility.GetLastRect();
+                        if (rect.Contains(Event.current.mousePosition))
+                        {
+                            if (Event.current.type == EventType.DragUpdated) {
+                                DragAndDrop.visualMode = DragAndDropVisualMode.Copy;
+                                Event.current.Use();
+                            }
+                            else if (Event.current.type == EventType.DragPerform) {
+                                DragAndDrop.AcceptDrag();
+                                foreach (var draggedObject in DragAndDrop.objectReferences) {
+                                    if (chosenListFormat == 0) // Simple
+                                    {
+                                        int index = eqsData.arraySize;
+                                        eqsData.arraySize++;
+                                        SerializedProperty element = eqsData.GetArrayElementAtIndex(index);
+                                        element.FindPropertyRelative("Target").objectReferenceValue = draggedObject;
+                                        element.FindPropertyRelative("Type").objectReferenceValue = null;
+                                        element.FindPropertyRelative("Foldout").boolValue = false;
+                                        serializedObject?.ApplyModifiedProperties();
+                                        data.ValidateData(index);
+                                    }
+                                }
+                                EditorApplication.DirtyHierarchyWindowSorting();
+                                scrollPos = new Vector2(0,Mathf.Infinity);
+                            }
                         }
                     }
                 }
