@@ -1,13 +1,30 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 namespace EasyQuestSwitch
 {
     public static class EQS_Localization
     {
-        public static EQS_LocalizedLanguage Current;
+        private static EQS_LocalizedLanguage _current;
+        public static EQS_LocalizedLanguage Current
+        {
+            set => _current = value;
+            get
+            {
+                if (_current == null)
+                {
+                    if (AvailableLanguages == null)
+                    {
+                        LoadLanguages();
+                    }
+                    _current = AvailableLanguages[EditorPrefs.GetInt("EQS_Language", 0)];
+                }
+                return _current;
+            }
+        }
         public static EQS_LocalizedLanguage[] AvailableLanguages;
 
         [Serializable]
