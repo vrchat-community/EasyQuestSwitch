@@ -1,7 +1,11 @@
 #if UNITY_EDITOR && VRC_SDK_VRCSDK3
 using UnityEditor;
 using UnityEngine;
+#if UDON
 using VRC.SDK3.Components;
+#else
+using VRC.SDK3.Avatars.Components;
+#endif
 using EasyQuestSwitch.Fields;
 
 namespace EasyQuestSwitch.Types
