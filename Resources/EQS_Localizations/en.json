@@ -17,6 +17,9 @@
 	"SettingsFeedback": "If you have any issues with the program, do not hesitate to look up the github code or contact me on twitter!",
 	"SettingsGithub": "Github",
 	"SettingsTwitter": "Twitter",
+	"SettingsHierarchy": "Hierarchy options",
+	"SettingsHierarchyIconShow": "Show hierarchy icon",
+	"SettingsHierarchyIconOffset": "Icon offset",
 
 	"PopupDeleteWarning": "This will delete EasyQuestSwitch from the scene and all its data, are you sure?",
 	"PopupTargetChanged": "Your build target has changed since the last time you've opened this scene, apply EQS changes for {0}?\nThis can be done manually in the settings menu.",
@@ -26,6 +29,7 @@
 	"ListSetupEQS": "Setup Easy Quest Switch in the scene",
 	"ListExpand": "Expand all",
 	"ListFold": "Fold all",
+	"ListDragAndDrop": "Drag & Drop new items here.",
 
 	"LogUnsupportedComponent": "This is an unsupported component.",
 	"LogComponentExists": "This component is already present within EQS.",

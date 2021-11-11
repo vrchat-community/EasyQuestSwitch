@@ -402,15 +402,18 @@ namespace EasyQuestSwitch
                             DestroyEQS();
                         }
                     }
-                    EditorGUI.BeginChangeCheck();
-                    EditorGUILayout.LabelField("Hierarchy Settings", EditorStyles.boldLabel);
-                    showHierarchyIcon = EditorGUILayout.Toggle("Show Hierarchy Icon", showHierarchyIcon);
-                    sideOffset = EditorGUILayout.Slider("Icon Offset", sideOffset, -20f, 100f);
-                    if (EditorGUI.EndChangeCheck()) {
-                        EditorPrefs.SetFloat("EQS_HierarchySideOffset", sideOffset);
-                        EditorPrefs.SetBool("EQS_ShowHierarchyIcon", showHierarchyIcon);
-                        EQS_HierarchyController.InitializeEQSHierarchy();
-                        EditorApplication.DirtyHierarchyWindowSorting();
+                    using (var changeHierarchySettings = new EditorGUI.ChangeCheckScope())
+                    {
+                        EditorGUILayout.LabelField(EQS_Localization.Current.SettingsHierarchy, EditorStyles.boldLabel);
+                        showHierarchyIcon = EditorGUILayout.Toggle(EQS_Localization.Current.SettingsHierarchyIconShow, showHierarchyIcon);
+                        sideOffset = EditorGUILayout.Slider(EQS_Localization.Current.SettingsHierarchyIconOffset, sideOffset, -20f, 100f);
+                        if (changeHierarchySettings.changed)
+                        {
+                            EditorPrefs.SetFloat("EQS_HierarchySideOffset", sideOffset);
+                            EditorPrefs.SetBool("EQS_ShowHierarchyIcon", showHierarchyIcon);
+                            EQS_HierarchyController.InitializeEQSHierarchy();
+                            EditorApplication.DirtyHierarchyWindowSorting();
+                        }
                     }
                     EditorGUILayout.Space(10);
                 }
@@ -592,11 +595,15 @@ namespace EasyQuestSwitch
                         {
                             reorderableList.DoLayoutList();
                         }
-                        EditorGUILayout.LabelField(new GUIContent("Drag & Drop new items here"), new GUIStyle(EditorStyles.helpBox) {
+
+                        EditorGUILayout.LabelField(new GUIContent(EQS_Localization.Current.ListDragAndDrop), new GUIStyle(EditorStyles.toolbar) {
+                            fixedWidth = EditorGUIUtility.currentViewWidth,
                             alignment = TextAnchor.MiddleCenter,
-                            fixedHeight = 100,
-                            fontSize = 24
-                        });
+                            stretchHeight = true,
+                            fontSize = 24,
+                            fixedHeight = 0,
+                        }, GUILayout.ExpandHeight(true), GUILayout.MinHeight(100));
+
                         var rect = GUILayoutUtility.GetLastRect();
                         if (rect.Contains(Event.current.mousePosition))
                         {
