@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if UNITY_EDITOR
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -20,7 +21,7 @@ namespace EasyQuestSwitch
                     {
                         LoadLanguages();
                     }
-                    _current = AvailableLanguages[EditorPrefs.GetInt("EQS_Language", 0)];
+                    _current = SetLanguage(EditorPrefs.GetInt("EQS_Language", 0));
                 }
                 return _current;
             }
@@ -92,3 +93,4 @@ namespace EasyQuestSwitch
 
     }
 }
+#endif
