@@ -21,7 +21,7 @@ namespace EasyQuestSwitch
                     {
                         LoadLanguages();
                     }
-                    _current = SetLanguage(EditorPrefs.GetInt("EQS_Language", 0));
+                    SetLanguage(EditorPrefs.GetInt("EQS_Language", 0));
                 }
                 return _current;
             }
