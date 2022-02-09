@@ -1,0 +1,36 @@
+{
+	"DisplayName": "Simplified Chinese",
+
+	"SettingsButton": "设置",
+	"SettingsLanguage": "语言",
+	"SettingsListFormat": "列表格式",
+	"SettingsListFormatArray": [ "Simple (较快)", "Reorderable (较慢)" ],
+	"SettingsApplyPC": "强制应用PC设置",
+	"SettingsApplyQuest": "强制应用Quest设置",
+	"SettingsRemoveEQS": "从场景中从移除 Easy Quest Switch",
+	"SettingsCacheWarning": "缓存服务器未启用，您可能需要较长的切换时间！最好将其设置为本地或远程。（远程操作需要额外的步骤）",
+	"SettingsCacheButton": "打开设置",
+	"SettingsAssetPipelineV2": "您没有应用Asset Pipeline v2，它可能会缩短平台切换时间。",
+	"SettingsExplanation": "欢迎来到Easy Quest Switch \n首先，使用“+”将新元素添加到列表中，并将一个组件从场景拖动到对象字段中，将出现与该组件相关的多个选项，您可以分别为场景的PC或Quest版本配置每个选项。\n更改Unity project build目标时，这些选项将自动应用于场景。",
+	"SettingsDebugOptions": "调试选项",
+	"SettingsDebugReveal": "显示 EQS_Data GameObject",
+	"SettingsFeedback": "如果您对此插件有任何疑问,不要犹豫,立即上github或twitter联系作者.",
+	"SettingsGithub": "Github",
+	"SettingsTwitter": "Twitter",
+
+	"PopupDeleteWarning": "这将从场景及其所有数据中删除EasyQuestSwitch，您确定吗？",
+	"PopupTargetChanged": "自上次打开此场景以来，生成目标已更改，是否为{0}应用EQS变更？\n这可以在设置菜单中手动完成。",
+	"PopupAccept": "是",
+	"PopupDecline": "否",
+
+	"ListSetupEQS": "安装 Easy Quest Switch 到场景",
+	"ListExpand": "全部展开",
+	"ListFold": "全部折叠",
+
+	"LogUnsupportedComponent": "这是一个不受支持的组件。",
+	"LogComponentExists": "此组件已存在于EQS中。",
+	"LogSwitchMissing": "入口{0}目标组件丢失或未分配。",
+	"LogSwitchFailure": "入口{0}（{1}）在切换过程中遇到错误：{2}。",
+	"LogSwitchSuccess": "EasyQuestSwitch应用并生成{0}场景的更改。",
+	"LogSwitchUnsupported": "切换到不受支持的生成目标。"
+}
