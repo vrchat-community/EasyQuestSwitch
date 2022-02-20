@@ -71,7 +71,7 @@ namespace EasyQuestSwitch
             EditorSceneManager.activeSceneChangedInEditMode += OnSceneChanged;
             Undo.undoRedoPerformed += OnUndoRedo;
 
-            minSize = new Vector2(512, 320);
+            minSize = new Vector2(512, 400);
             CreatePlatformDependantHeader(EditorUserBuildSettings.activeBuildTarget);
             logo = (Texture2D)Resources.Load("EQS_Logo", typeof(Texture2D));
 
@@ -129,6 +129,8 @@ namespace EasyQuestSwitch
                 reorderableList.showDefaultBackground = false;
                 reorderableList.headerHeight = 0;
             }
+
+            EQS_HierarchyController.InitializeEQSHierarchy();
         }
 
         private void RegisterReorderableListCallbacks()
@@ -406,7 +408,7 @@ namespace EasyQuestSwitch
                     {
                         EditorGUILayout.LabelField(EQS_Localization.Current.SettingsHierarchy, EditorStyles.boldLabel);
                         showHierarchyIcon = EditorGUILayout.Toggle(EQS_Localization.Current.SettingsHierarchyIconShow, showHierarchyIcon);
-                        sideOffset = EditorGUILayout.Slider(EQS_Localization.Current.SettingsHierarchyIconOffset, sideOffset, -20f, 100f);
+                        sideOffset = EditorGUILayout.Slider(EQS_Localization.Current.SettingsHierarchyIconOffset, sideOffset, -100f, 15f);
                         if (changeHierarchySettings.changed)
                         {
                             EditorPrefs.SetFloat("EQS_HierarchySideOffset", sideOffset);
@@ -586,7 +588,8 @@ namespace EasyQuestSwitch
                                     GUILayout.Space(boxHeight);
                                 }
 
-                                newRect.y += boxHeight - 1;
+                                GUILayout.Space(EditorGUIUtility.standardVerticalSpacing);
+                                newRect.y += boxHeight + EditorGUIUtility.standardVerticalSpacing - 1;
                                 newRect.height = 1;
                                 EditorGUI.DrawRect(newRect, Color.grey);
                             }
@@ -614,17 +617,14 @@ namespace EasyQuestSwitch
                             else if (Event.current.type == EventType.DragPerform) {
                                 DragAndDrop.AcceptDrag();
                                 foreach (var draggedObject in DragAndDrop.objectReferences) {
-                                    if (chosenListFormat == 0) // Simple
-                                    {
-                                        int index = eqsData.arraySize;
-                                        eqsData.arraySize++;
-                                        SerializedProperty element = eqsData.GetArrayElementAtIndex(index);
-                                        element.FindPropertyRelative("Target").objectReferenceValue = draggedObject;
-                                        element.FindPropertyRelative("Type").objectReferenceValue = null;
-                                        element.FindPropertyRelative("Foldout").boolValue = false;
-                                        serializedObject?.ApplyModifiedProperties();
-                                        data.ValidateData(index);
-                                    }
+                                    int index = eqsData.arraySize;
+                                    eqsData.arraySize++;
+                                    SerializedProperty element = eqsData.GetArrayElementAtIndex(index);
+                                    element.FindPropertyRelative("Target").objectReferenceValue = draggedObject;
+                                    element.FindPropertyRelative("Type").objectReferenceValue = null;
+                                    element.FindPropertyRelative("Foldout").boolValue = false;
+                                    serializedObject?.ApplyModifiedProperties();
+                                    data.ValidateData(index);
                                 }
                                 EditorApplication.DirtyHierarchyWindowSorting();
                                 scrollPos = new Vector2(0,Mathf.Infinity);
