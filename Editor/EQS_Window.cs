@@ -44,6 +44,8 @@ namespace EasyQuestSwitch
         private int chosenLanguage;
         private int chosenListFormat;
         private bool revealEQSdata = false;
+        private float sideOffset = 0f;
+        private bool showHierarchyIcon = true;
 
         private void CreatePlatformDependantHeader(BuildTarget buildTarget)
         {
@@ -69,7 +71,7 @@ namespace EasyQuestSwitch
             EditorSceneManager.activeSceneChangedInEditMode += OnSceneChanged;
             Undo.undoRedoPerformed += OnUndoRedo;
 
-            minSize = new Vector2(512, 320);
+            minSize = new Vector2(512, 400);
             CreatePlatformDependantHeader(EditorUserBuildSettings.activeBuildTarget);
             logo = (Texture2D)Resources.Load("EQS_Logo", typeof(Texture2D));
 
@@ -77,6 +79,8 @@ namespace EasyQuestSwitch
             chosenLanguage = EditorPrefs.GetInt("EQS_Language", 0);
             EQS_Localization.SetLanguage(chosenLanguage);
             chosenListFormat = EditorPrefs.GetInt("EQS_ListFormat", 0); // 0 - Simple, 1 - Reorderable
+            sideOffset = EditorPrefs.GetFloat("EQS_HierarchySideOffset", 0f);
+            showHierarchyIcon = EditorPrefs.GetBool("EQS_ShowHierarchyIcon", true);
 
             if (data != null)
             {
@@ -125,6 +129,8 @@ namespace EasyQuestSwitch
                 reorderableList.showDefaultBackground = false;
                 reorderableList.headerHeight = 0;
             }
+
+            EQS_HierarchyController.InitializeEQSHierarchy();
         }
 
         private void RegisterReorderableListCallbacks()
@@ -300,6 +306,7 @@ namespace EasyQuestSwitch
             UnityEngine.Object elementObj = element.FindPropertyRelative("Type").objectReferenceValue;
             if (elementObj != null) DestroyImmediate(elementObj);
             list.DeleteArrayElementAtIndex(index);
+            EditorApplication.DirtyHierarchyWindowSorting();
         }
 
         private void OnGUI()
@@ -397,6 +404,20 @@ namespace EasyQuestSwitch
                             DestroyEQS();
                         }
                     }
+                    using (var changeHierarchySettings = new EditorGUI.ChangeCheckScope())
+                    {
+                        EditorGUILayout.LabelField(EQS_Localization.Current.SettingsHierarchy, EditorStyles.boldLabel);
+                        showHierarchyIcon = EditorGUILayout.Toggle(EQS_Localization.Current.SettingsHierarchyIconShow, showHierarchyIcon);
+                        sideOffset = EditorGUILayout.Slider(EQS_Localization.Current.SettingsHierarchyIconOffset, sideOffset, -100f, 15f);
+                        if (changeHierarchySettings.changed)
+                        {
+                            EditorPrefs.SetFloat("EQS_HierarchySideOffset", sideOffset);
+                            EditorPrefs.SetBool("EQS_ShowHierarchyIcon", showHierarchyIcon);
+                            EQS_HierarchyController.InitializeEQSHierarchy();
+                            EditorApplication.DirtyHierarchyWindowSorting();
+                        }
+                    }
+                    EditorGUILayout.Space(10);
                 }
 
                 using (new GUILayout.VerticalScope())
@@ -524,6 +545,7 @@ namespace EasyQuestSwitch
                                     {
                                         serializedObject.ApplyModifiedProperties();
                                         data.ValidateData(index);
+                                        EditorApplication.DirtyHierarchyWindowSorting();
                                     }
                                     if (GUILayout.Button("\u2005\u2006-", EditorStyles.toolbarButton, GUILayout.Width(24)))
                                     {
@@ -566,7 +588,8 @@ namespace EasyQuestSwitch
                                     GUILayout.Space(boxHeight);
                                 }
 
-                                newRect.y += boxHeight - 1;
+                                GUILayout.Space(EditorGUIUtility.standardVerticalSpacing);
+                                newRect.y += boxHeight + EditorGUIUtility.standardVerticalSpacing - 1;
                                 newRect.height = 1;
                                 EditorGUI.DrawRect(newRect, Color.grey);
                             }
@@ -574,6 +597,38 @@ namespace EasyQuestSwitch
                         else if (chosenListFormat == 1) // Reorderable
                         {
                             reorderableList.DoLayoutList();
+                        }
+
+                        EditorGUILayout.LabelField(new GUIContent(EQS_Localization.Current.ListDragAndDrop), new GUIStyle(EditorStyles.toolbar) {
+                            fixedWidth = EditorGUIUtility.currentViewWidth,
+                            alignment = TextAnchor.MiddleCenter,
+                            stretchHeight = true,
+                            fontSize = 24,
+                            fixedHeight = 0,
+                        }, GUILayout.ExpandHeight(true), GUILayout.MinHeight(100));
+
+                        var rect = GUILayoutUtility.GetLastRect();
+                        if (rect.Contains(Event.current.mousePosition))
+                        {
+                            if (Event.current.type == EventType.DragUpdated) {
+                                DragAndDrop.visualMode = DragAndDropVisualMode.Copy;
+                                Event.current.Use();
+                            }
+                            else if (Event.current.type == EventType.DragPerform) {
+                                DragAndDrop.AcceptDrag();
+                                foreach (var draggedObject in DragAndDrop.objectReferences) {
+                                    int index = eqsData.arraySize;
+                                    eqsData.arraySize++;
+                                    SerializedProperty element = eqsData.GetArrayElementAtIndex(index);
+                                    element.FindPropertyRelative("Target").objectReferenceValue = draggedObject;
+                                    element.FindPropertyRelative("Type").objectReferenceValue = null;
+                                    element.FindPropertyRelative("Foldout").boolValue = false;
+                                    serializedObject?.ApplyModifiedProperties();
+                                    data.ValidateData(index);
+                                }
+                                EditorApplication.DirtyHierarchyWindowSorting();
+                                scrollPos = new Vector2(0,Mathf.Infinity);
+                            }
                         }
                     }
                 }

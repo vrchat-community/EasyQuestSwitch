@@ -49,6 +49,9 @@ namespace EasyQuestSwitch
             public string SettingsFeedback;
             public string SettingsGithub;
             public string SettingsTwitter;
+            public string SettingsHierarchy;
+            public string SettingsHierarchyIconShow;
+            public string SettingsHierarchyIconOffset;
 
             public string PopupDeleteWarning;
             public string PopupTargetChanged;
@@ -58,6 +61,7 @@ namespace EasyQuestSwitch
             public string ListSetupEQS;
             public string ListExpand;
             public string ListFold;
+            public string ListDragAndDrop;
 
             public string LogUnsupportedComponent;
             public string LogComponentExists;
