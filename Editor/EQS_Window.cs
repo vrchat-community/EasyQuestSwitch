@@ -76,8 +76,21 @@ namespace EasyQuestSwitch
             logo = (Texture2D)Resources.Load("EQS_Logo", typeof(Texture2D));
 
             EQS_Localization.LoadLanguages();
-            chosenLanguage = EditorPrefs.GetInt("EQS_Language", 0);
-            EQS_Localization.SetLanguage(chosenLanguage);
+            // Prior to 1.2, language preferences were set using the index order instead of the language code
+            if (System.String.IsNullOrEmpty(EditorPrefs.GetString("EQS_Language", null)))
+            {
+                switch(EditorPrefs.GetInt("EQS_Language", 0))
+                {
+                    default:
+                    case 0:
+                        EditorPrefs.SetString("EQS_Language", "en");
+                        break;
+                    case 1:
+                        EditorPrefs.SetString("EQS_Language", "jp");
+                        break;
+                }
+            }
+            chosenLanguage = EQS_Localization.SetLanguage(EditorPrefs.GetString("EQS_Language", "en"));
             chosenListFormat = EditorPrefs.GetInt("EQS_ListFormat", 0); // 0 - Simple, 1 - Reorderable
             sideOffset = EditorPrefs.GetFloat("EQS_HierarchySideOffset", 0f);
             showHierarchyIcon = EditorPrefs.GetBool("EQS_ShowHierarchyIcon", true);
@@ -374,7 +387,7 @@ namespace EasyQuestSwitch
                         if(changeLanguage.changed)
                         {
                             EQS_Localization.SetLanguage(chosenLanguage);
-                            EditorPrefs.SetInt("EQS_Language", chosenLanguage);
+                            EditorPrefs.SetString("EQS_Language", EQS_Localization.Current.Code);
                         }
                     }
 

@@ -1,0 +1,41 @@
+{
+	"DisplayName": "Français",
+	"Author": "Jordo",
+
+	"SettingsButton": "Paramètres",
+	"SettingsLanguage": "Language",
+	"SettingsListFormat": "Format de la liste",
+	"SettingsListFormatArray": [ "Simple (rapide)", "Re-organisable (lent)" ],
+	"SettingsApplyPC": "Appliquer les paramètres PC de force",
+	"SettingsApplyQuest": "Appliquer les paramètres Quest de force",
+	"SettingsRemoveEQS": "Supprimer Easy Quest Switch de la scène",
+	"SettingsCacheWarning": "Votre serveur cache n'est pas activé, il est possible que vous ayez un temps de changement de plateforme cible plus long! Il est préférable de le configurer en local ou remote. (Remote requiert des étapes supplémentaires)",
+	"SettingsCacheButton": "Ouvrir paramètres",
+	"SettingsAssetPipelineV2": "Vous n'utilisez pas l'Asset Pipeline v2, utiliser ce paramètre pourrait vous donner un temps de changement de plateforme cible plus rapide.",
+	"SettingsExplanation": "Bienvenue sur Easy Quest Switch! Pour commencer, ajoutez un élément à la liste avec '+' et glissez un composant de la scène dans le champ d'objet, plusieurs options en rapport à ce composant vont apparaitre, vous pouvez configurer pour la version PC et la version Quest respectivement.\nCes paramètres seront automatiquement appliqués à la scène lorsque vous changez la plateforme cible du projet Unity.",
+	"SettingsDebugOptions": "Options de déboguage",
+	"SettingsDebugReveal": "Révéler le GameObject EQS_Data",
+	"SettingsFeedback": "Si vous rencontrez un quelconque problème avec cet outil, n'hésitez pas à regarder le code sur Github ou bien contactez-moi sur twitter!",
+	"SettingsGithub": "Github",
+	"SettingsTwitter": "Twitter",
+	"SettingsHierarchy": "Options de hiérarchie",
+	"SettingsHierarchyIconShow": "Montrer les icones",
+	"SettingsHierarchyIconOffset": "Décalage des icones",
+
+	"PopupDeleteWarning": "Ceci va supprimer Easy Quest Switch de la scène ainsi que toutes ses données, êtes-vous sûr?",
+	"PopupTargetChanged": "Votre platforme cible a changée depuis la dernière fois que vous avez ouvert la scène, appliquer les changements EQS pour {0}?\nCela peut-être effectué manuellement dans le menu paramètres.",
+	"PopupAccept": "Oui",
+	"PopupDecline": "Non",
+
+	"ListSetupEQS": "Mettre en place Easy Quest Switch dans la scène",
+	"ListExpand": "Développer tout",
+	"ListFold": "Réduire tout",
+	"ListDragAndDrop": "Glissez & Déposez des nouveaux objets içi.",
+
+	"LogUnsupportedComponent": "Ceci est un composant non supporté.",
+	"LogComponentExists": "Ce composent est déjà présent dans EQS.",
+	"LogSwitchMissing": "Le composant cible de l'entrée {0} est manquant ou non-assigné.",
+	"LogSwitchFailure": "L'entrée {0} ({1}) a rencontré une erreur pendant le processus de changement: {2}.",
+	"LogSwitchSuccess": "Easy Quest Switch a appliqué les changements de scène pour la plateforme cible {0}.",
+	"LogSwitchUnsupported": "Changement vers une plateforme cible non supportée."
+}

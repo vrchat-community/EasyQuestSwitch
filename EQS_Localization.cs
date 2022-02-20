@@ -31,7 +31,9 @@ namespace EasyQuestSwitch
         [Serializable]
         public class EQS_LocalizedLanguage
         {
+            public string Code;
             public string DisplayName;
+            public string Author;
 
             public string SettingsButton;
             public string SettingsLanguage;
@@ -63,6 +65,7 @@ namespace EasyQuestSwitch
             public string ListFold;
             public string ListDragAndDrop;
 
+            public string LogPrefix = "[EasyQuestSwitch] ";
             public string LogUnsupportedComponent;
             public string LogComponentExists;
             public string LogSwitchMissing;
@@ -78,7 +81,14 @@ namespace EasyQuestSwitch
             for(int i = 0; i < JSONlanguages.Length; i++)
             {
                 AvailableLanguages[i] = JsonUtility.FromJson<EQS_LocalizedLanguage>(JSONlanguages[i].ToString());
+                AvailableLanguages[i].Code = JSONlanguages[i].name;
             }
+            Array.Sort(AvailableLanguages, (x, y) =>
+            {
+                if(x.Code == "en") return -1;
+                if(y.Code == "en") return 1;
+                return x.DisplayName.CompareTo(y.DisplayName);
+            });
             Current = AvailableLanguages[0];
         }
 
@@ -92,7 +102,21 @@ namespace EasyQuestSwitch
             return languagesArray;
         }
 
-        public static void SetLanguage(int i) => Current = i < AvailableLanguages.Length ? AvailableLanguages[i] : AvailableLanguages[0];
+        public static int SetLanguage(string str)
+        {
+            for(int i = 0; i < AvailableLanguages.Length; i++)
+            {
+                if (AvailableLanguages[i].Code == str.ToLower())
+                {
+                    Current = AvailableLanguages[i];
+                    return i;
+                }
+            }
+            Current = AvailableLanguages[0];
+            return 0;
+        }
+
+        public static int SetLanguage(int i) => SetLanguage(AvailableLanguages[i].Code);
 
 
     }

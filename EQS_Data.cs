@@ -36,11 +36,9 @@ namespace EasyQuestSwitch
                     if (i == index) continue;
                     if (Objects[i].Target == data.Target)
                     {
-                        Debug.LogError(EQS_Localization.Current.LogComponentExists);
+                        Debug.LogError(EQS_Localization.Current.LogPrefix + EQS_Localization.Current.LogComponentExists);
                         DestroyImmediate(Objects[index].Type);
-                        Objects[index].Type = null;
-                        Objects[index].Foldout = false;
-                        Objects[index].Target = null;
+                        Objects.RemoveAt(index);
                         return;
                     }
                 }
@@ -80,7 +78,7 @@ namespace EasyQuestSwitch
                 }
                 if(Objects[index].Type == null)
                 {
-                    Debug.LogError(EQS_Localization.Current.LogUnsupportedComponent);
+                    Debug.LogError(EQS_Localization.Current.LogPrefix + EQS_Localization.Current.LogUnsupportedComponent);
                     Objects[index].Target = null;
                     Objects[index].Foldout = false;
                     return;
@@ -129,7 +127,7 @@ namespace EasyQuestSwitch
                     Data d = Objects[i];
                     if(d.Target == null)
                     {
-                        Debug.LogErrorFormat(EQS_Localization.Current.LogSwitchMissing, i);
+                        Debug.LogErrorFormat(EQS_Localization.Current.LogPrefix + EQS_Localization.Current.LogSwitchMissing, i);
                     }
                     else
                     {
@@ -140,15 +138,15 @@ namespace EasyQuestSwitch
                         }
                         catch (Exception e)
                         {
-                            Debug.LogErrorFormat(EQS_Localization.Current.LogSwitchFailure, i, d.Target.name, e.Message);
+                            Debug.LogErrorFormat(EQS_Localization.Current.LogPrefix + EQS_Localization.Current.LogSwitchFailure, i, d.Target.name, e.Message);
                         }
                     }
                 }
-                Debug.LogFormat(EQS_Localization.Current.LogSwitchSuccess, newTarget);
+                Debug.LogFormat(EQS_Localization.Current.LogPrefix + EQS_Localization.Current.LogSwitchSuccess, newTarget);
             }
             else
             {
-                Debug.LogError(EQS_Localization.Current.LogSwitchUnsupported);
+                Debug.LogError(EQS_Localization.Current.LogPrefix + EQS_Localization.Current.LogSwitchUnsupported);
             }
         }
     }
