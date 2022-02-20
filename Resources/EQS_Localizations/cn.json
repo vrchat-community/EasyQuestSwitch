@@ -17,6 +17,9 @@
 	"SettingsFeedback": "如果您对此插件有任何疑问,不要犹豫,立即上github或twitter联系作者.",
 	"SettingsGithub": "Github",
 	"SettingsTwitter": "Twitter",
+	"SettingsHierarchy": "层次结构选项", 
+	"SettingsHierarchyIconShow": "显示图标", 
+	"SettingsHierarchyIconOffset": "隐藏图标",
 
 	"PopupDeleteWarning": "这将从场景及其所有数据中删除EasyQuestSwitch，您确定吗？",
 	"PopupTargetChanged": "自上次打开此场景以来，生成目标已更改，是否为{0}应用EQS变更？\n这可以在设置菜单中手动完成。",
@@ -26,6 +29,7 @@
 	"ListSetupEQS": "安装 Easy Quest Switch 到场景",
 	"ListExpand": "全部展开",
 	"ListFold": "全部折叠",
+	"ListDragAndDrop": "拖拽新项目至此.",
 
 	"LogUnsupportedComponent": "这是一个不受支持的组件。",
 	"LogComponentExists": "此组件已存在于EQS中。",
