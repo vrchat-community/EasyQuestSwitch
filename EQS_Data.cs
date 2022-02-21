@@ -95,30 +95,37 @@ namespace EasyQuestSwitch
             }
         }
 
-        public BuildTarget CachedBuildTarget; // Last build target used in this scene
-        public BuildTarget NewBuildTarget;
-
-        // Removed feature for Vket release, will be released in v1.2
-        /*private void Start()
+        [Serializable]
+        public class BuildInfo
         {
-            /*if(CachedBuildTarget != NewBuildTarget && Objects != null)
-            {
-                string displayDialog = string.Format(EQS_Localization.Current.PopupTargetChanged, NewBuildTarget.ToString());
-                if(EditorUtility.DisplayDialog("", displayDialog, EQS_Localization.Current.PopupAccept, EQS_Localization.Current.PopupDecline))
-                {
-                    CheckTarget(NewBuildTarget);
-                }
-            }
-        }*/
+            public BuildTarget CachedBuildTarget; // Last build target used in this scene
+            public BuildTarget NewBuildTarget;
+        }
+        [SerializeField]
+        private BuildInfo buildInfo = new BuildInfo();
 
-        private void Update()
+        public void OnChangedBuildTarget(BuildTarget newTarget)
         {
-            NewBuildTarget = EditorUserBuildSettings.activeBuildTarget;
-            if (CachedBuildTarget != NewBuildTarget && Objects != null) CheckTarget(NewBuildTarget);
-            CachedBuildTarget = NewBuildTarget;
+            buildInfo.NewBuildTarget = newTarget;
+            if (buildInfo.CachedBuildTarget != buildInfo.NewBuildTarget && Objects != null) ApplyTarget(buildInfo.NewBuildTarget);
+            buildInfo.CachedBuildTarget = buildInfo.NewBuildTarget;
         }
 
-        public void CheckTarget(BuildTarget newTarget)
+        public void OnSceneOpened()
+        {
+            buildInfo.NewBuildTarget = EditorUserBuildSettings.activeBuildTarget;
+            if (buildInfo.CachedBuildTarget != buildInfo.NewBuildTarget && Objects != null)
+            {
+                string displayDialog = string.Format(EQS_Localization.Current.PopupTargetChanged, buildInfo.NewBuildTarget.ToString());
+                if (EditorUtility.DisplayDialog("", displayDialog, EQS_Localization.Current.PopupAccept, EQS_Localization.Current.PopupDecline))
+                {
+                    ApplyTarget(buildInfo.NewBuildTarget);
+                    buildInfo.CachedBuildTarget = buildInfo.NewBuildTarget;
+                }
+            }
+        }
+
+        public void ApplyTarget(BuildTarget newTarget)
         {
             if(newTarget == BuildTarget.StandaloneWindows64 || newTarget == BuildTarget.Android)
             {
@@ -143,6 +150,7 @@ namespace EasyQuestSwitch
                     }
                 }
                 Debug.LogFormat(EQS_Localization.Current.LogPrefix + EQS_Localization.Current.LogSwitchSuccess, newTarget);
+                UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(UnityEditor.SceneManagement.EditorSceneManager.GetActiveScene());
             }
             else
             {

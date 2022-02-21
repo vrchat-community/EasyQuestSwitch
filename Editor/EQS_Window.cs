@@ -407,8 +407,8 @@ namespace EasyQuestSwitch
                 {
                     using (new GUILayout.HorizontalScope())
                     {
-                        if (GUILayout.Button(EQS_Localization.Current.SettingsApplyPC)) data.CheckTarget(BuildTarget.StandaloneWindows64);
-                        if (GUILayout.Button(EQS_Localization.Current.SettingsApplyQuest)) data.CheckTarget(BuildTarget.Android);
+                        if (GUILayout.Button(EQS_Localization.Current.SettingsApplyPC)) data.ApplyTarget(BuildTarget.StandaloneWindows64);
+                        if (GUILayout.Button(EQS_Localization.Current.SettingsApplyQuest)) data.ApplyTarget(BuildTarget.Android);
                     }
                     if (GUILayout.Button(EQS_Localization.Current.SettingsRemoveEQS, GUILayout.Height(32)))
                     {

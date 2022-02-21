@@ -24,16 +24,6 @@ namespace EasyQuestSwitch
             {
                 logo = (Texture2D)Resources.Load("EQS_Logo_Crop", typeof(Texture2D));
             }
-            if (entryStyle == null)
-            {
-                entryStyle = new GUIStyle(EditorStyles.label)
-                {
-                    alignment = TextAnchor.MiddleRight,
-                    fixedHeight = 18,
-                    fixedWidth = 18
-                };
-            }
-
             if (data == null)
             {
                 data = GameObject.Find("EQS_DATA")?.GetComponent<EQS_Data>();
@@ -67,6 +57,16 @@ namespace EasyQuestSwitch
             if (!showHierarchyIcon)
             {
                 return;
+            }
+
+            if (entryStyle == null)
+            {
+                entryStyle = new GUIStyle(EditorStyles.label)
+                {
+                    alignment = TextAnchor.MiddleRight,
+                    fixedHeight = 18,
+                    fixedWidth = 18
+                };
             }
 
             if (data == null || data.Objects == null) return;
