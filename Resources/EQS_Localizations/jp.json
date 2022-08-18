@@ -18,9 +18,9 @@
 	"SettingsFeedback": "プログラムに何か問題があれば、GitHubのコードを調べるか、Twitterで私に連絡してください!",
 	"SettingsGithub": "Github",
 	"SettingsTwitter": "Twitter",
-	"SettingsHierarchy": "Hierarchy options",
-	"SettingsHierarchyIconShow": "Show hierarchy icon",
-	"SettingsHierarchyIconOffset": "Icon offset",
+	"SettingsHierarchy": "ヒエラルキーの設定",
+	"SettingsHierarchyIconShow": "アイコンの表示",
+	"SettingsHierarchyIconOffset": "アイコンのオフセット",
 
 	"PopupDeleteWarning": "シーンから「EasyQuestSwitch」が削除され、データもすべて削除されます。続行しますか？",
 	"PopupTargetChanged": "前回のBuild実行時と違うPlatformへ変更されました。EQSを{0}用で適用してください。\nマニュアルで適用する場合は設定メニューから実行可能です。",
@@ -30,7 +30,7 @@
 	"ListSetupEQS": "Sceneに「EasyQuestSwitch」を追加する",
 	"ListExpand": "すべてを展開",
 	"ListFold": "すべてを畳む",
-	"ListDragAndDrop": "Drag & Drop new items here.",
+	"ListDragAndDrop": "新規アイテムを追加するには、\nここへドラッグ&ドロップしてください。",
 
 	"LogUnsupportedComponent": "これはサポートされていないコンポーネントです",
 	"LogComponentExists": "このコンポーネントは既にEQSに設定されています。",
