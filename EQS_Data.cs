@@ -26,6 +26,15 @@ namespace EasyQuestSwitch
 
         public List<Data> Objects;
 
+        public bool DoesDataExist(Object d)
+        {
+            for (int i = 0; i < Objects.Count; i++)
+            {
+                if (Objects[i].Target == d) return true;
+            }
+            return false;
+        }
+
         public void ValidateData(int index)
         {
             Data data = Objects[index];

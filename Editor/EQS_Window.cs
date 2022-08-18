@@ -12,7 +12,8 @@ namespace EasyQuestSwitch
 
     public class EQS_Window : EditorWindow
     {
-
+        private const string version = "1.2.0";
+        
         [MenuItem("Window/Easy Quest Switch")]
         public static void ShowWindow()
         {
@@ -331,19 +332,29 @@ namespace EasyQuestSwitch
             using (new GUILayout.HorizontalScope(headerStyle))
             {
                 headerStyle.normal.background = headerBG;
-                using (new GUILayout.HorizontalScope(headerStyle))
+                using (var scope = new EditorGUILayout.HorizontalScope(headerStyle))
                 {
+
                     GUILayout.FlexibleSpace();
                     Color guiBackgroundColor = GUI.backgroundColor;
                     GUI.backgroundColor = new Color(1,1,1,0);
                     GUILayout.Box(logo, GUILayout.Width(150), GUILayout.Height(70));
                     GUI.backgroundColor = guiBackgroundColor;
                     GUILayout.FlexibleSpace();
-                    Rect settingsRect = GUILayoutUtility.GetLastRect();
-                    settingsRect.width /= 2;
-                    settingsRect.x += settingsRect.width;
-                    settingsRect.height = EditorGUIUtility.singleLineHeight + 2;
-                    settingsMenu = GUI.Toggle(settingsRect, settingsMenu, EQS_Localization.Current.SettingsButton, new GUIStyle("Button"));
+
+                    Rect versionLabelRect, settingsButtonRect;
+                    versionLabelRect = settingsButtonRect = scope.rect;
+
+                    settingsButtonRect.xMin = scope.rect.xMax - EditorStyles.label.CalcSize(new GUIContent(EQS_Localization.Current.SettingsButton)).x - 40;
+                    settingsButtonRect.yMax = scope.rect.yMin + EditorGUIUtility.singleLineHeight + 2;
+                    settingsButtonRect.x -= 3;
+                    settingsButtonRect.y += 3;
+                    settingsMenu = GUI.Toggle(settingsButtonRect, settingsMenu, EQS_Localization.Current.SettingsButton, new GUIStyle("Button"));
+                    
+                    string eqsVersion = $"v{version}";
+                    versionLabelRect.xMin = scope.rect.xMax - EditorStyles.label.CalcSize(new GUIContent(eqsVersion)).x - 2;
+                    versionLabelRect.yMin = scope.rect.yMax - EditorGUIUtility.singleLineHeight;
+                    GUI.Label(versionLabelRect, $"v{version}");
                 }
             }
 
@@ -469,10 +480,10 @@ namespace EasyQuestSwitch
                     using (new GUILayout.HorizontalScope())
                     {
                         GUILayout.Box(EQS_Localization.Current.SettingsFeedback, EditorStyles.wordWrappedLabel);
-                        if (GUILayout.Button(EQS_Localization.Current.SettingsTwitter)) Application.OpenURL("https://twitter.com/JordoVR");
-                        if (GUILayout.Button(EQS_Localization.Current.SettingsGithub)) Application.OpenURL("https://github.com/JordoVR/EasyQuestSwitch");
+                        if (GUILayout.Button(EQS_Localization.Current.SettingsTwitter, GUILayout.ExpandHeight(true))) Application.OpenURL("https://twitter.com/JordoVR");
+                        if (GUILayout.Button(EQS_Localization.Current.SettingsGithub, GUILayout.ExpandHeight(true))) Application.OpenURL("https://github.com/JordoVR/EasyQuestSwitch");
                     }
-                    GUILayout.Space(EditorGUIUtility.singleLineHeight);
+
                 }
 
             }
@@ -528,7 +539,7 @@ namespace EasyQuestSwitch
                     }
 
                     // Begin scroll & list
-                    using (var scrollView = new GUILayout.ScrollViewScope(scrollPos, false, true, GUIStyle.none, GUI.skin.verticalScrollbar, GUI.skin.scrollView))
+                    using (var scrollView = new GUILayout.ScrollViewScope(scrollPos, false, true, GUIStyle.none, GUI.skin.verticalScrollbar, GUI.skin.scrollView, GUILayout.ExpandHeight(false)))
                     {
                         scrollPos = scrollView.scrollPosition;
 
@@ -611,42 +622,51 @@ namespace EasyQuestSwitch
                         {
                             reorderableList.DoLayoutList();
                         }
+                    }
 
-                        EditorGUILayout.LabelField(new GUIContent(EQS_Localization.Current.ListDragAndDrop), new GUIStyle(EditorStyles.toolbar) {
-                            fixedWidth = EditorGUIUtility.currentViewWidth,
-                            alignment = TextAnchor.MiddleCenter,
-                            stretchHeight = true,
-                            fontSize = 24,
-                            fixedHeight = 0,
-                        }, GUILayout.ExpandHeight(true), GUILayout.MinHeight(100));
+                    EditorGUILayout.LabelField(new GUIContent(EQS_Localization.Current.ListDragAndDrop), new GUIStyle(EditorStyles.toolbar)
+                    {
+                        fixedWidth = EditorGUIUtility.currentViewWidth,
+                        alignment = TextAnchor.MiddleCenter,
+                        stretchHeight = true,
+                        fontSize = 24,
+                        fixedHeight = 0,
+                    }, GUILayout.ExpandHeight(true), GUILayout.MinHeight(100));
 
-                        var rect = GUILayoutUtility.GetLastRect();
-                        if (rect.Contains(Event.current.mousePosition))
+                    var rect = GUILayoutUtility.GetLastRect();
+                    if (rect.Contains(Event.current.mousePosition))
+                    {
+                        if (Event.current.type == EventType.DragUpdated)
                         {
-                            if (Event.current.type == EventType.DragUpdated) {
-                                DragAndDrop.visualMode = DragAndDropVisualMode.Copy;
-                                Event.current.Use();
-                            }
-                            else if (Event.current.type == EventType.DragPerform) {
-                                DragAndDrop.AcceptDrag();
-                                foreach (var draggedObject in DragAndDrop.objectReferences) {
-                                    int index = eqsData.arraySize;
-                                    eqsData.arraySize++;
-                                    SerializedProperty element = eqsData.GetArrayElementAtIndex(index);
-                                    element.FindPropertyRelative("Target").objectReferenceValue = draggedObject;
-                                    element.FindPropertyRelative("Type").objectReferenceValue = null;
-                                    element.FindPropertyRelative("Foldout").boolValue = false;
-                                    serializedObject?.ApplyModifiedProperties();
-                                    data.ValidateData(index);
+                            DragAndDrop.visualMode = DragAndDropVisualMode.Copy;
+                            Event.current.Use();
+                        }
+                        else if (Event.current.type == EventType.DragPerform)
+                        {
+                            DragAndDrop.AcceptDrag();
+                            foreach (var draggedObject in DragAndDrop.objectReferences)
+                            {
+                                if (data.DoesDataExist(draggedObject))
+                                {
+                                    Debug.LogError(EQS_Localization.Current.LogPrefix + EQS_Localization.Current.LogComponentExists);
+                                    continue;
                                 }
-                                EditorApplication.DirtyHierarchyWindowSorting();
-                                scrollPos = new Vector2(0,Mathf.Infinity);
+                                int index = eqsData.arraySize;
+                                eqsData.arraySize++;
+                                SerializedProperty element = eqsData.GetArrayElementAtIndex(index);
+                                element.FindPropertyRelative("Target").objectReferenceValue = draggedObject;
+                                element.FindPropertyRelative("Type").objectReferenceValue = null;
+                                element.FindPropertyRelative("Foldout").boolValue = false;
+                                serializedObject?.ApplyModifiedProperties();
+                                data.ValidateData(index);
                             }
+                            EditorApplication.DirtyHierarchyWindowSorting();
+                            scrollPos = new Vector2(0, Mathf.Infinity);
                         }
                     }
                 }
             }
-            if(serializedObject != null) serializedObject.ApplyModifiedProperties();
+            serializedObject?.ApplyModifiedProperties();
         }
     }
 }
