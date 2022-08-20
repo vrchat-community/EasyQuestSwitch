@@ -646,6 +646,7 @@ namespace EasyQuestSwitch
                             DragAndDrop.AcceptDrag();
                             foreach (var draggedObject in DragAndDrop.objectReferences)
                             {
+                                serializedObject?.Update();
                                 if (data.DoesDataExist(draggedObject))
                                 {
                                     Debug.LogError(EQS_Localization.Current.LogPrefix + EQS_Localization.Current.LogComponentExists);
