@@ -647,11 +647,6 @@ namespace EasyQuestSwitch
                             foreach (var draggedObject in DragAndDrop.objectReferences)
                             {
                                 serializedObject?.Update();
-                                if (data.DoesDataExist(draggedObject))
-                                {
-                                    Debug.LogError(EQS_Localization.Current.LogPrefix + EQS_Localization.Current.LogComponentExists);
-                                    continue;
-                                }
                                 int index = eqsData.arraySize;
                                 eqsData.arraySize++;
                                 SerializedProperty element = eqsData.GetArrayElementAtIndex(index);
