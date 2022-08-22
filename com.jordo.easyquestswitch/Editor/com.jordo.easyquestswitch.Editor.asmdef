@@ -1,0 +1,14 @@
+{
+  "name": "com.jordo.easyquestswitch.Editor",
+  "references": [
+    "com.jordo.easyquestswitch"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "autoReferenced": true,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "defineConstraints": [],
+  "optionalUnityReferences": []
+}

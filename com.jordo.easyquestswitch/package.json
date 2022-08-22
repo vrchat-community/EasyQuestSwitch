@@ -1,0 +1,11 @@
+{
+  "name": "com.jordo.easyquestswitch",
+  "displayName": "EasyQuestSwitch",
+  "version": "1.2.0",
+  "description": "EasyQuestSwitch is a Unity editor tool developed for VRChat world creators, it can automate changes to components within a scene as soon as the build platform is changed from PC to Android (for Oculus Quest) or vice versa.",
+  "gitDependencies": {},
+  "vpmDependencies": {},
+  "legacyFolders": {},
+  "legacyFiles": {},
+  "localPath": "C:\\VRChat\\Projects\\EasyQuestSwitch_VPM3\\Packages\\com.jordo.easyquestswitch"
+}
