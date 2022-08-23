@@ -1,7 +1,7 @@
 {
-  "name": "com.jordo.easyquestswitch.Editor",
+  "name": "vrchat.jordo.easyquestswitch.Editor",
   "references": [
-    "com.jordo.easyquestswitch"
+    "vrchat.jordo.easyquestswitch"
   ],
   "includePlatforms": [],
   "excludePlatforms": [],
