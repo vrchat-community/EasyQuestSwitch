@@ -1,14 +1,17 @@
 {
-  "name": "vrchat.jordo.easyquestswitch.Editor",
-  "references": [
-    "vrchat.jordo.easyquestswitch"
-  ],
-  "includePlatforms": [],
-  "excludePlatforms": [],
-  "allowUnsafeCode": false,
-  "autoReferenced": true,
-  "overrideReferences": false,
-  "precompiledReferences": [],
-  "defineConstraints": [],
-  "optionalUnityReferences": []
+    "name": "vrchat.jordo.easyquestswitch.Editor",
+    "references": [
+        "vrchat.jordo.easyquestswitch"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }
