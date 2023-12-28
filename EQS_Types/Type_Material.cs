@@ -12,6 +12,9 @@ namespace EasyQuestSwitch.Types
         private Material type;
 
         public SharedShader Shader = new SharedShader();
+        public SharedColor MainColor = new SharedColor();
+        [InspectorName("GPU Instancing")]
+        public SharedBool GPUInstancing = new SharedBool();
         private SharedString ShaderPath = new SharedString();
 
         public override void Setup(Object type)
@@ -19,6 +22,8 @@ namespace EasyQuestSwitch.Types
             Material material = (Material)type;
             Shader.Setup(material.shader);
             ShaderPath.Setup(material.shader.name);
+            MainColor.Setup(material.color);
+            GPUInstancing.Setup(material.enableInstancing);
         }
 
         public override void Process(Object type, BuildTarget buildTarget)
@@ -54,6 +59,8 @@ namespace EasyQuestSwitch.Types
                 throw new MissingReferenceException();
             }
             material.shader = Shader.Get(buildTarget);
+            material.color = MainColor.Get(buildTarget);
+            material.enableInstancing = GPUInstancing.Get(buildTarget);
         }
     }
 }
