@@ -221,6 +221,7 @@ namespace EasyQuestSwitch
                         }
                         elementTypeIterator.serializedObject.ApplyModifiedProperties();
                     }
+                    elementType.Dispose();
                 }
             }
 
@@ -605,6 +606,7 @@ namespace EasyQuestSwitch
                                             elementTypeIterator.serializedObject.ApplyModifiedProperties();
                                             boxHeight += EditorGUI.GetPropertyHeight(elementTypeIterator) + EditorGUIUtility.standardVerticalSpacing;
                                         }
+                                        elementType.Dispose();
                                     }
                                 }
                                 else
