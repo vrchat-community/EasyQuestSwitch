@@ -1,0 +1,41 @@
+{
+	"DisplayName": "Español",
+	"Author": "RadAngelZero",
+
+	"SettingsButton": "Ajustes",
+	"SettingsLanguage": "Idioma",
+	"SettingsListFormat": "Formato de lista",
+	"SettingsListFormatArray": [ "Simple (rápido)", "Reordenable (lento)" ],
+	"SettingsApplyPC": "Forzar aplicación de ajustes de PC",
+	"SettingsApplyQuest": "Forzar aplicación de ajustes de Quest",
+	"SettingsRemoveEQS": "Remover Easy Quest Switch de la escena",
+	"SettingsCacheWarning": "Tu servidor de cache no está habilitado, puedes experimentar largos tiempos de cambio! Es mejor establecerlo a local o remoto. (Remoto requiere pasos adicionales)",
+	"SettingsCacheButton": "Abrir ajustes",
+	"SettingsAssetPipelineV2": "No estas usando Asset Pipeline v2, cambiarlo puede dar tiempos de cambio de plataforma más rápidos.",
+	"SettingsExplanation": "Bienvenido a Easy Quest Switch! Para comenzar, agrega un elemento a la lista con '+' y arrastra un componente de la escena al campo de objetos, varias opciones relacionadas a ese componente apareceran, puedes configurar cada uno para su versión de PC o Quest respectivamente.\nEstas opciones serán aplicadas automáticamente a la escena cuando cambies la plataforma de compilación del proyecto de Unity.",
+	"SettingsDebugOptions": "Opciones de desarrollador",
+	"SettingsDebugReveal": "Revelar EQS_Data GameObject",
+	"SettingsFeedback": "Si tienes algún problema con el programa, no dudes en echar un vistazo al codigo de github o contactame en twitter!",
+	"SettingsGithub": "Github",
+	"SettingsTwitter": "Twitter",
+	"SettingsHierarchy": "Ajustes de jerarquía",
+	"SettingsHierarchyIconShow": "Mostrar icono en la jerarquía",
+	"SettingsHierarchyIconOffset": "Ajuste de posición del icono",
+
+	"PopupDeleteWarning": "Esto borrara EasyQuestSwitch de la escena y todos sus datos, ¿Estas seguro?",
+	"PopupTargetChanged": "Tu plataforma de compilacion ha cambiado desde la última vez que abriste esta escena, aplicar cambios para {0}?\nEsto puede ser hecho manualmente en el menú de ajustes.",
+	"PopupAccept": "Si",
+	"PopupDecline": "No",
+
+	"ListSetupEQS": "Configurar Easy Quest Switch en la escena",
+	"ListExpand": "Expandir todo",
+	"ListFold": "Contraer todo",
+	"ListDragAndDrop": "Arrastra y suelta nuevos objetos aquí.",
+
+	"LogUnsupportedComponent": "Este es un componente no soportado.",
+	"LogComponentExists": "Este componente ya está presente dentro de EQS.",
+	"LogSwitchMissing": "Entrada {0} falta el componente plataforma o no está asignado.",
+	"LogSwitchFailure": "Entrada {0} ({1}) se encontró un error durante el proceso de cambio: {2}.",
+	"LogSwitchSuccess": "EasyQuestSwitch aplico los cambios a la escena del plataforma de compilacion {0}.",
+	"LogSwitchUnsupported": "Cambiado a una plataforma de compilacion no soportada."
+}
