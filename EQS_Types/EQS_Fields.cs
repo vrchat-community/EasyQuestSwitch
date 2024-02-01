@@ -156,9 +156,13 @@ namespace EasyQuestSwitch.Fields
 
     #region Light
     [Serializable]
-    public class SharedLightmapBakeType : SharedObject<LightmapBakeType> {}
+    public class SharedLightmapBakeType : SharedObject<LightmapBakeType> { }
     [Serializable]
-    public class SharedLightShadows : SharedObject<LightShadows> {}
+    public class SharedLightShadows: SharedObject<LightShadows> { }
+    [Serializable]
+    public class SharedLightRenderMode: SharedObject<LightRenderMode> { }
+    [Serializable]
+    public class SharedLightType: SharedObject<LightType> { }
     #endregion
 }
 #endif
