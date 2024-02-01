@@ -433,10 +433,7 @@ namespace EasyQuestSwitch
                     {
                         EditorGUILayout.LabelField(EQS_Localization.Current.SettingsHierarchy, EditorStyles.boldLabel);
                         float labelWithOriginal = EditorGUIUtility.labelWidth;
-                        if(chosenLanguage.Equals(1))
-                        {
-                            EditorGUIUtility.labelWidth = 180;
-                        }
+                        EditorGUIUtility.labelWidth = 180; // Gives more padding eg for Spanish
                         showHierarchyIcon = EditorGUILayout.Toggle(EQS_Localization.Current.SettingsHierarchyIconShow, showHierarchyIcon);
                         sideOffset = EditorGUILayout.Slider(EQS_Localization.Current.SettingsHierarchyIconOffset, sideOffset, -100f, 15f);
                         EditorGUIUtility.labelWidth = labelWithOriginal;
