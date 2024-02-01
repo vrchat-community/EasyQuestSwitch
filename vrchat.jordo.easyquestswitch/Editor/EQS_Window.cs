@@ -12,7 +12,7 @@ namespace EasyQuestSwitch
 
     public class EQS_Window : EditorWindow
     {
-        private const string version = "1.2.0";
+        private const string version = "1.3.0";
         
         [MenuItem("Window/Easy Quest Switch")]
         public static void ShowWindow()
