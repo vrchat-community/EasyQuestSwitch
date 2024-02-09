@@ -100,7 +100,9 @@ namespace EasyQuestSwitch.Fields
     , CustomPropertyDrawer(typeof(SharedFilterMode), false)
     // Light
     , CustomPropertyDrawer(typeof(SharedLightmapBakeType), false)
-    , CustomPropertyDrawer(typeof(SharedLightShadows), false)]
+    , CustomPropertyDrawer(typeof(SharedLightShadows), false)
+    , CustomPropertyDrawer(typeof(SharedLightType), false)
+    , CustomPropertyDrawer(typeof(SharedLightRenderMode), false)]
     public class PropertiesDrawer : BaseDrawer
     {
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
