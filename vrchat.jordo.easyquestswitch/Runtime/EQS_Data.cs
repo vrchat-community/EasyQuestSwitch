@@ -113,7 +113,7 @@ namespace EasyQuestSwitch
             buildInfo.CachedBuildTarget = buildInfo.NewBuildTarget;
         }
 
-        public void OnSceneOpened()
+        public void Awake()
         {
             if (currentVersion > version)
             {
@@ -129,6 +129,10 @@ namespace EasyQuestSwitch
                 }
                 version = currentVersion;
             }
+        }
+
+        public void OnSceneOpened()
+        {
             /*buildInfo.NewBuildTarget = EditorUserBuildSettings.activeBuildTarget;
             if (buildInfo.CachedBuildTarget != buildInfo.NewBuildTarget && Objects != null)
             {
@@ -140,7 +144,7 @@ namespace EasyQuestSwitch
                 }
             }*/
         }
-
+        
         public void ApplyTarget(BuildTarget newTarget)
         {
             if(newTarget == BuildTarget.StandaloneWindows64 || newTarget == BuildTarget.Android)
