@@ -25,6 +25,8 @@ namespace EasyQuestSwitch
         }
 
         public List<Data> Objects;
+        public int version = 0;
+        private const int currentVersion = 131;
 
         public void ValidateData(int index)
         {
@@ -111,9 +113,27 @@ namespace EasyQuestSwitch
             buildInfo.CachedBuildTarget = buildInfo.NewBuildTarget;
         }
 
+        public void Awake()
+        {
+            if (currentVersion > version)
+            {
+                foreach (Data d in Objects)
+                {
+                    if (d.Type != null)
+                    {
+                        if(d.Type.GetType() == typeof(Type_Material) || d.Type.GetType() == typeof(Type_Material)) 
+                        {
+                            d.Type.Setup(d.Target, version);
+                        }
+                    }
+                }
+                version = currentVersion;
+            }
+        }
+
         public void OnSceneOpened()
         {
-            buildInfo.NewBuildTarget = EditorUserBuildSettings.activeBuildTarget;
+            /*buildInfo.NewBuildTarget = EditorUserBuildSettings.activeBuildTarget;
             if (buildInfo.CachedBuildTarget != buildInfo.NewBuildTarget && Objects != null)
             {
                 string displayDialog = string.Format(EQS_Localization.Current.PopupTargetChanged, buildInfo.NewBuildTarget.ToString());
@@ -122,9 +142,9 @@ namespace EasyQuestSwitch
                     ApplyTarget(buildInfo.NewBuildTarget);
                     buildInfo.CachedBuildTarget = buildInfo.NewBuildTarget;
                 }
-            }
+            }*/
         }
-
+        
         public void ApplyTarget(BuildTarget newTarget)
         {
             if(newTarget == BuildTarget.StandaloneWindows64 || newTarget == BuildTarget.Android)
