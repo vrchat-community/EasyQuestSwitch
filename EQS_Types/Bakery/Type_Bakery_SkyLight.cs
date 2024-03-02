@@ -1,4 +1,4 @@
-﻿#if UNITY_EDITOR
+﻿#if UNITY_EDITOR && BAKERY_INCLUDED
 using UnityEditor;
 using UnityEngine;
 using EasyQuestSwitch.Fields;
@@ -6,11 +6,10 @@ using EasyQuestSwitch.Fields;
 namespace EasyQuestSwitch.Types
 {
     [AddComponentMenu("")]
-    public class Type_BakerySkyLight : Type_Base
+    public class Type_Bakery_SkyLight : Type_Base
     {
         [System.NonSerialized]
         private BakerySkyLight type;
-
 
         public SharedColor color = new SharedColor();
         public SharedFloat intensity = new SharedFloat();
