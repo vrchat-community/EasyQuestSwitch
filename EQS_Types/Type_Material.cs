@@ -26,16 +26,6 @@ namespace EasyQuestSwitch.Types
             GPUInstancing.Setup(material.enableInstancing);
         }
 
-        public override void Setup(Object type, int currentVersion)
-        {
-            Material material = (Material)type;
-            if (currentVersion == 0) // 0 -> 131 upgrade
-            {
-                MainColor.Setup(material.color);
-                GPUInstancing.Setup(material.enableInstancing);
-            }
-        }
-
         public override void Process(Object type, BuildTarget buildTarget)
         {
             Material material = (Material)type;

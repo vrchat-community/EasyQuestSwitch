@@ -34,17 +34,6 @@ namespace EasyQuestSwitch.Types
             RenderMode.Setup(component.renderMode);
         }
 
-        public override void Setup(Object type, int currentVersion)
-        {
-            Light component = (Light)type;
-            if (currentVersion == 0) // 0 -> 131 upgrade
-            {
-                LightType.Setup(component.type);
-                Range.Setup(component.range);
-                RenderMode.Setup(component.renderMode);
-            }
-        }
-
         public override void Process(Object type, BuildTarget buildTarget)
         {
             base.Process(type, buildTarget);

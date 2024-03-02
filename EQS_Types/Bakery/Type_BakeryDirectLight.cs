@@ -1,4 +1,4 @@
-﻿#if UNITY_EDITOR && BAKERY_INCLUDED
+﻿#if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
 using EasyQuestSwitch.Fields;
@@ -6,49 +6,44 @@ using EasyQuestSwitch.Fields;
 namespace EasyQuestSwitch.Types
 {
     [AddComponentMenu("")]
-    public class Type_Bakery_PointLight : Type_Base
+    public class Type_BakeryDirectLight : Type_Base
     {
         [System.NonSerialized]
         private BakeryPointLight type;
 
+
         public SharedColor color = new SharedColor();
         public SharedFloat intensity = new SharedFloat();
         public SharedFloat shadowSpread = new SharedFloat();
-        public SharedBool physicalFalloff = new SharedBool();
-        public SharedFloat range = new SharedFloat();
-        public SharedInt samples = new SharedInt();
-        public SharedBool legacySampling = new SharedBool();
+        public SharedInt shadowSamples = new SharedInt();
         public SharedFloat indirectIntensity = new SharedFloat();
+        public SharedBool antiAlias = new SharedBool();
 
 
         public override void Setup(Object type)
         {
             
          //   base.Setup(type);
-            BakeryPointLight component = (BakeryPointLight)type;
+            BakeryDirectLight component = (BakeryDirectLight)type;
             color.Setup(component.color);
             intensity.Setup(component.intensity);
             shadowSpread.Setup(component.shadowSpread);
-            physicalFalloff.Setup(component.realisticFalloff);
-            range.Setup(component.cutoff);
-            samples.Setup(component.samples);
-            legacySampling.Setup(component.legacySampling);
+            shadowSamples.Setup(component.samples);
             indirectIntensity.Setup(component.indirectIntensity);
+            antiAlias.Setup(component.supersample);
 
         }
 
         public override void Process(Object type, BuildTarget buildTarget)
         {
            // base.Process(type, buildTarget);
-            BakeryPointLight component = (BakeryPointLight)type;
+            BakeryDirectLight component = (BakeryDirectLight)type;
             component.color = color.Get(buildTarget);
             component.intensity = intensity.Get(buildTarget);
             component.shadowSpread = shadowSpread.Get(buildTarget);
-            component.realisticFalloff = physicalFalloff.Get(buildTarget);
-            component.cutoff = range.Get(buildTarget);
-            component.samples = samples.Get(buildTarget);
-            component.legacySampling = legacySampling.Get(buildTarget);
+            component.samples = shadowSamples.Get(buildTarget);
             component.indirectIntensity = indirectIntensity.Get(buildTarget);
+            component.supersample = antiAlias.Get(buildTarget);
 
 
         }
