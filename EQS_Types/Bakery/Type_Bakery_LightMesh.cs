@@ -1,4 +1,4 @@
-﻿#if UNITY_EDITOR
+﻿#if UNITY_EDITOR && BAKERY_INCLUDED
 using UnityEditor;
 using UnityEngine;
 using EasyQuestSwitch.Fields;
@@ -6,7 +6,7 @@ using EasyQuestSwitch.Fields;
 namespace EasyQuestSwitch.Types
 {
     [AddComponentMenu("")]
-    public class Type_BakeryLightMesh : Type_Base
+    public class Type_Bakery_LightMesh : Type_Base
     {
         [System.NonSerialized]
         private BakeryLightMesh type;
