@@ -115,7 +115,7 @@ namespace EasyQuestSwitch
 
         public void Awake()
         {
-            if (currentVersion > version)
+            if (Objects != null && currentVersion > version)
             {
                 foreach (Data d in Objects)
                 {
