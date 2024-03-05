@@ -54,6 +54,7 @@ namespace EasyQuestSwitch
             public string SettingsHierarchy;
             public string SettingsHierarchyIconShow;
             public string SettingsHierarchyIconOffset;
+            public string SettingsPromptForPlatformChange;
 
             public string PopupDeleteWarning;
             public string PopupTargetChanged;

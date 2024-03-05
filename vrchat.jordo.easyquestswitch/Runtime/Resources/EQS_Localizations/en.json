@@ -21,6 +21,7 @@
 	"SettingsHierarchy": "Hierarchy options",
 	"SettingsHierarchyIconShow": "Show hierarchy icon",
 	"SettingsHierarchyIconOffset": "Icon offset",
+	"SettingsPromptForPlatformChange": "Show prompt to apply EQS changes if a newly opened scene still uses setting from the opposite platform (Can cause issues with Bakery).",
 
 	"PopupDeleteWarning": "This will delete EasyQuestSwitch from the scene and all its data, are you sure?",
 	"PopupTargetChanged": "Your build target has changed since the last time you've opened this scene, apply EQS changes for {0}?\nThis can be done manually in the settings menu.",

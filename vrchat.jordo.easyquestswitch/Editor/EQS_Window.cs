@@ -1,11 +1,11 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEditor;
 using UnityEditorInternal;
 using UnityEditor.SceneManagement;
 using UnityEngine.SceneManagement;
 using EasyQuestSwitch.Fields;
 using System.IO;
-using UnityEditor.Build;
 
 namespace EasyQuestSwitch
 {
@@ -47,6 +47,10 @@ namespace EasyQuestSwitch
         private bool revealEQSdata = false;
         private float sideOffset = 0f;
         private bool showHierarchyIcon = true;
+        private bool promptForPlatformChange = true;
+        
+        [NonSerialized]
+        private bool subscribedToEvents = false;
 
         private void CreatePlatformDependantHeader(BuildTarget buildTarget)
         {
@@ -69,8 +73,12 @@ namespace EasyQuestSwitch
         private void OnEnable()
         {
             serializedObject = null;
-            EditorSceneManager.activeSceneChangedInEditMode += OnSceneChanged;
-            Undo.undoRedoPerformed += OnUndoRedo;
+            if (!subscribedToEvents)
+            {
+                EditorSceneManager.activeSceneChangedInEditMode += OnSceneChanged;
+                Undo.undoRedoPerformed += OnUndoRedo;
+                subscribedToEvents = true;
+            }
 
             minSize = new Vector2(512, 400);
             CreatePlatformDependantHeader(EditorUserBuildSettings.activeBuildTarget);
@@ -95,11 +103,22 @@ namespace EasyQuestSwitch
             chosenListFormat = EditorPrefs.GetInt("EQS_ListFormat", 0); // 0 - Simple, 1 - Reorderable
             sideOffset = EditorPrefs.GetFloat("EQS_HierarchySideOffset", 0f);
             showHierarchyIcon = EditorPrefs.GetBool("EQS_ShowHierarchyIcon", true);
+            promptForPlatformChange = EditorPrefs.GetBool("EQS_PromptForPlatformChange", true);
 
             if (data != null)
             {
                 SetupEQS();
                 revealEQSdata = data.gameObject.hideFlags == HideFlags.HideInHierarchy ? false : true;
+            }
+        }
+
+        private void OnDestroy()
+        {
+            if (subscribedToEvents)
+            {
+                EditorSceneManager.activeSceneChangedInEditMode -= OnSceneChanged;
+                Undo.undoRedoPerformed -= OnUndoRedo;
+                subscribedToEvents = false;
             }
         }
 
@@ -429,6 +448,21 @@ namespace EasyQuestSwitch
                             DestroyEQS();
                         }
                     }
+                    EditorGUILayout.Space(10);
+                    using (var changeOtherSettings = new EditorGUI.ChangeCheckScope())
+                    {
+                        using (new EditorGUILayout.HorizontalScope())
+                        {
+                            EditorGUILayout.LabelField(EQS_Localization.Current.SettingsPromptForPlatformChange, EditorStyles.wordWrappedLabel);
+                            promptForPlatformChange = EditorGUILayout.Toggle(GUIContent.none, promptForPlatformChange);
+                        }
+
+                        if (changeOtherSettings.changed)
+                        {
+                            EditorPrefs.SetBool("EQS_PromptForPlatformChange", promptForPlatformChange);
+                        }
+                    }
+                    EditorGUILayout.Space(10);
                     using (var changeHierarchySettings = new EditorGUI.ChangeCheckScope())
                     {
                         EditorGUILayout.LabelField(EQS_Localization.Current.SettingsHierarchy, EditorStyles.boldLabel);
