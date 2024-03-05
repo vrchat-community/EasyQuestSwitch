@@ -6,7 +6,7 @@ using EasyQuestSwitch.Fields;
 namespace EasyQuestSwitch.Types
 {
     [AddComponentMenu("")]
-    public class Type_Bakery_SkyLight : Type_Base
+    public class Type_Bakery_SkyLight : Type_Behaviour
     {
         [System.NonSerialized]
         private BakerySkyLight type;
@@ -19,25 +19,22 @@ namespace EasyQuestSwitch.Types
 
         public override void Setup(Object type)
         {
-            
-         //   base.Setup(type);
+            base.Setup(type);
             BakerySkyLight component = (BakerySkyLight)type;
             color.Setup(component.color);
             intensity.Setup(component.intensity);
             samples.Setup(component.samples);
             hemispherical.Setup(component.hemispherical);
-
         }
 
         public override void Process(Object type, BuildTarget buildTarget)
         {
-           // base.Process(type, buildTarget);
+            base.Process(type, buildTarget);
             BakerySkyLight component = (BakerySkyLight)type;
             component.color = color.Get(buildTarget);
             component.intensity = intensity.Get(buildTarget);
             component.samples = samples.Get(buildTarget);
             component.hemispherical = hemispherical.Get(buildTarget);
-
         }
     }
 }

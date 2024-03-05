@@ -6,7 +6,7 @@ using EasyQuestSwitch.Fields;
 namespace EasyQuestSwitch.Types
 {
     [AddComponentMenu("")]
-    public class Type_Bakery_DirectLight : Type_Base
+    public class Type_Bakery_DirectLight : Type_Behaviour
     {
         [System.NonSerialized]
         private BakeryDirectLight type;
@@ -21,8 +21,7 @@ namespace EasyQuestSwitch.Types
 
         public override void Setup(Object type)
         {
-
-            //   base.Setup(type);
+            base.Setup(type);
             BakeryDirectLight component = (BakeryDirectLight)type;
             color.Setup(component.color);
             intensity.Setup(component.intensity);
@@ -35,7 +34,7 @@ namespace EasyQuestSwitch.Types
 
         public override void Process(Object type, BuildTarget buildTarget)
         {
-            // base.Process(type, buildTarget);
+            base.Process(type, buildTarget);
             BakeryDirectLight component = (BakeryDirectLight)type;
             component.color = color.Get(buildTarget);
             component.intensity = intensity.Get(buildTarget);
@@ -43,8 +42,6 @@ namespace EasyQuestSwitch.Types
             component.samples = shadowSamples.Get(buildTarget);
             component.indirectIntensity = indirectIntensity.Get(buildTarget);
             component.supersample = antiAlias.Get(buildTarget);
-
-
         }
     }
 }
