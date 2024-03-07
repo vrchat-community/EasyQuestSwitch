@@ -21,7 +21,7 @@
 	"SettingsHierarchy": "Ajustes de jerarquía",
 	"SettingsHierarchyIconShow": "Mostrar icono en la jerarquía",
 	"SettingsHierarchyIconOffset": "Ajuste de posición del icono",
-	"SettingsPromptForPlatformChange": "Show prompt to apply EQS changes if a newly opened scene still uses setting from the opposite platform (Can cause issues with Bakery).",
+	"SettingsPromptForPlatformChange": "Mostrar mensaje para aplicar cambios de EQS si una escena recién abierta todavía usa la configuración de la plataforma opuesta (puede causar problemas con Bakery).",
 
 	"PopupDeleteWarning": "Esto borrara EasyQuestSwitch de la escena y todos sus datos, ¿Estas seguro?",
 	"PopupTargetChanged": "Tu plataforma de compilacion ha cambiado desde la última vez que abriste esta escena, aplicar cambios para {0}?\nEsto puede ser hecho manualmente en el menú de ajustes.",
