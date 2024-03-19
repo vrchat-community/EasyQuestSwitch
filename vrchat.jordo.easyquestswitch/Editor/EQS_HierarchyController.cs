@@ -72,8 +72,8 @@ namespace EasyQuestSwitch
             if (data == null || data.Objects == null) return;
 
             var targetIndex = data.Objects.FindIndex(i =>
-              (i.Target as Component)?.gameObject.GetHashCode() == instance.GetHashCode() ||
-              (i.Target as GameObject)?.GetHashCode() == instance.GetHashCode());
+              (i.Target as Component)?.gameObject.GetHashCode() == instance?.GetHashCode() ||
+              (i.Target as GameObject)?.GetHashCode() == instance?.GetHashCode());
 
             if (targetIndex == -1)
             {
