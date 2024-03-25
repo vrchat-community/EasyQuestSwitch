@@ -21,7 +21,7 @@
 	"SettingsHierarchy": "层次结构选项", 
 	"SettingsHierarchyIconShow": "显示图标", 
 	"SettingsHierarchyIconOffset": "隐藏图标",
-	"SettingsPromptForPlatformChange": "Show prompt to apply EQS changes if a newly opened scene still uses setting from the opposite platform (Can cause issues with Bakery).",
+	"SettingsPromptForPlatformChange": "是否打开场景更改时EQS弹出的应用变更提示 (与Bakery存在兼容性问题).",
 
 	"PopupDeleteWarning": "这将从场景及其所有数据中删除EasyQuestSwitch，您确定吗？",
 	"PopupTargetChanged": "自上次打开此场景以来，生成目标已更改，是否为{0}应用EQS变更？\n这可以在设置菜单中手动完成。",
