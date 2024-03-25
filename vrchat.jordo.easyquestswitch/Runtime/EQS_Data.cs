@@ -115,7 +115,7 @@ namespace EasyQuestSwitch
 
         public void Awake()
         {
-            if (currentVersion > version)
+            if (Objects != null && currentVersion > version)
             {
                 foreach (Data d in Objects)
                 {
@@ -133,16 +133,19 @@ namespace EasyQuestSwitch
 
         public void OnSceneOpened()
         {
-            /*buildInfo.NewBuildTarget = EditorUserBuildSettings.activeBuildTarget;
-            if (buildInfo.CachedBuildTarget != buildInfo.NewBuildTarget && Objects != null)
+            buildInfo.NewBuildTarget = EditorUserBuildSettings.activeBuildTarget;
+            if (EditorPrefs.GetBool("EQS_PromptForPlatformChange", true))
             {
-                string displayDialog = string.Format(EQS_Localization.Current.PopupTargetChanged, buildInfo.NewBuildTarget.ToString());
-                if (EditorUtility.DisplayDialog("", displayDialog, EQS_Localization.Current.PopupAccept, EQS_Localization.Current.PopupDecline))
+                if (buildInfo.CachedBuildTarget != buildInfo.NewBuildTarget && Objects != null)
                 {
-                    ApplyTarget(buildInfo.NewBuildTarget);
-                    buildInfo.CachedBuildTarget = buildInfo.NewBuildTarget;
+                    string displayDialog = string.Format(EQS_Localization.Current.PopupTargetChanged, buildInfo.NewBuildTarget.ToString());
+                    if (EditorUtility.DisplayDialog("", displayDialog, EQS_Localization.Current.PopupAccept, EQS_Localization.Current.PopupDecline))
+                    {
+                        ApplyTarget(buildInfo.NewBuildTarget);
+                        buildInfo.CachedBuildTarget = buildInfo.NewBuildTarget;
+                    }
                 }
-            }*/
+            }
         }
         
         public void ApplyTarget(BuildTarget newTarget)
@@ -169,6 +172,7 @@ namespace EasyQuestSwitch
                         }
                     }
                 }
+                buildInfo.CachedBuildTarget = newTarget;
                 Debug.LogFormat(EQS_Localization.Current.LogPrefix + EQS_Localization.Current.LogSwitchSuccess, newTarget);
                 UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(UnityEditor.SceneManagement.EditorSceneManager.GetActiveScene());
             }

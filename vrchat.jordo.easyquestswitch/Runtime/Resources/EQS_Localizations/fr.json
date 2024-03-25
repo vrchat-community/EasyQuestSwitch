@@ -21,6 +21,7 @@
 	"SettingsHierarchy": "Options de hiérarchie",
 	"SettingsHierarchyIconShow": "Montrer les icones",
 	"SettingsHierarchyIconOffset": "Décalage des icones",
+	"SettingsPromptForPlatformChange": "Montrer une fenêtre de dialogue pour appliquer les changements d'EQS si une scène chargée à l'instant utilise encore des paramètres de la platforme opposée (Peut causer des problèmes avec Bakery).",
 
 	"PopupDeleteWarning": "Ceci va supprimer Easy Quest Switch de la scène ainsi que toutes ses données, êtes-vous sûr?",
 	"PopupTargetChanged": "Votre platforme cible a changée depuis la dernière fois que vous avez ouvert la scène, appliquer les changements EQS pour {0}?\nCela peut-être effectué manuellement dans le menu paramètres.",

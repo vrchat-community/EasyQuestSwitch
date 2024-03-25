@@ -21,6 +21,7 @@
 	"SettingsHierarchy": "ヒエラルキーの設定",
 	"SettingsHierarchyIconShow": "アイコンの表示",
 	"SettingsHierarchyIconOffset": "アイコンのオフセット",
+	"SettingsPromptForPlatformChange": "新しく開いたシーンが別プラットフォーム用の設定な際にEQSの設定を適用するか確認画面を表示する (Bakeryで不具合が発生する可能性)。",
 
 	"PopupDeleteWarning": "シーンから「EasyQuestSwitch」が削除され、データもすべて削除されます。続行しますか？",
 	"PopupTargetChanged": "前回のBuild実行時と違うPlatformへ変更されました。EQSを{0}用で適用してください。\nマニュアルで適用する場合は設定メニューから実行可能です。",
